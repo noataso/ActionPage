@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+    crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div data-page="0" class="page bg-dark">
+        <div data-content="0" class="content text-white">
+            <h2>Completed</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, recusandae!</p>
+        </div>
+    </div>
+    <div data-page="1" class="page bg-primary">
+        <div data-content="1" class="content text-white">
+            <h2>Completed</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, recusandae!</p>
+        </div>
+    </div>
+    <div data-page="2" class="page bg-danger">
+        <div data-content="2" class="content text-white">
+            <h2>Completed</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, recusandae!</p>
+        </div>
+    </div>
+    <div data-page="3" class="page bg-warning">
+        <div data-content="3" class="content text-white">
+            <h2>Completed</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, recusandae!</p>
+        </div>
+    </div>
+    <div data-page="4" class="page bg-info">
+        <div data-content="4" class="content text-white">
+            <h2>Completed</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, recusandae!</p>
+        </div>
+    </div>
+    <div data-page="5" class="page bg-success">
+        <div data-content="5" class="content text-white">
+            <h2>Completed</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, recusandae!</p>
+        </div>
+    </div>
+    <div class="change-btns">
+        <button class="change-btn" data-button="0"></button>
+        <button class="change-btn" data-button="1"></button>
+        <button class="change-btn" data-button="2"></button>
+        <button class="change-btn" data-button="3"></button>
+        <button class="change-btn" data-button="4"></button>
+        <button class="change-btn" data-button="5"></button>
+    </div>
+    <script>
+        let $page=document.querySelectorAll('[data-page]')
+        let $button=document.querySelectorAll('[data-button]')
+        let $content=document.querySelectorAll('[data-content]')
+        let index=0;
+        while(index<$button.length){
+            $button[index].addEventListener('click',(e)=>clickHandler(e))
+            index++;
+        }
+
+        const clickHandler=(e)=>{
+            e.preventDefault();
+            let target=e.target;
+            let targetVal=target.dataset.button;
+            index=0;
+            while(index<$button.length){
+                $page[index].style.width="1px";
+                $page[index].style.height="1px";
+                $page[index].style.zIndex="1";
+                // $page[index].classList.remove('active');
+                $page[index].style.top=`${Math.random()*100+"%"}`;
+                $page[index].style.left=`${Math.random()*100+"%"}`;
+                $page[index].style.transition=`height ${Math.random()*2.5+"s"},width ${Math.random()*3.5+"s"},top 2s,left 2s`;
+                $content[index].style.visibility="hidden";
+                $content[index].style.transitionDelay="0.1s";
+                index++;
+            }
+            $page[targetVal].style.width="100%";
+            $page[targetVal].style.height="100vh";
+            $page[targetVal].style.zIndex="10";
+            $page[targetVal].style.top="0";
+            $page[targetVal].style.left="0";
+            // $page[targetVal].classList.add('active');
+            $page[targetVal].style.transition=`height ${Math.random()*2.5+"s"},width ${Math.random()*3.5+"s"},top 2s,left 2s`;
+            $page[targetVal].style.transitionDelay="1s";
+            $content[targetVal].style.visibility="visible";
+            $content[targetVal].style.transitionDelay="2.4s";
+        }
+    </script>
+</body>
+</html>
